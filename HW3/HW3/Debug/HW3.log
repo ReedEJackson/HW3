@@ -1,15 +1,15 @@
-﻿  utility.cpp
-e:\programming\graphics\homework\hw3\hw3\utility.cpp(17): warning C4244: '=': conversion from 'std::streamoff' to 'int', possible loss of data
-  HW3.cpp
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(266): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(477): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(479): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(480): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(482): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(483): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(490): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-e:\programming\graphics\homework\hw3\hw3\hw3.cpp(492): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+﻿  HW3.cpp
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(266): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(477): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(479): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(480): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(482): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(483): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(490): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(492): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating Code...
-  HW3.vcxproj -> E:\Programming\Graphics\Homework\HW3\Debug\HW3.exe
-  HW3.vcxproj -> E:\Programming\Graphics\Homework\HW3\Debug\HW3.pdb (Partial PDB)
+  Skipping... (no relevant changes detected)
+  utility.cpp
+  HW3.vcxproj -> C:\Users\lehie\source\repos\HW3\HW3\Debug\HW3.exe
+  HW3.vcxproj -> C:\Users\lehie\source\repos\HW3\HW3\Debug\HW3.pdb (Partial PDB)

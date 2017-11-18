@@ -4,4 +4,11 @@
     <LocalDebuggerCommandArguments>-v E:\Programming\Graphics\Homework\HW3\HW3\vertextHW3.txt -f E:\Programming\Graphics\Homework\HW3\HW3\fragmentHW3.txt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LocalDebuggerCommandArguments>-v vertexHw3.txt -f fragmentHw3.txt</LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>

@@ -9,7 +9,7 @@ using namespace std;
 // See Angel 6th ed.
 char* readShaderFile(const char* shaderFileName)
 {
-	ifstream f(shaderFileName);
+	ifstream f(shaderFileName, ios::binary);
 	int fileSize;
 
 	if (!f) { return NULL; }

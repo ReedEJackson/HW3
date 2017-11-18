@@ -34,8 +34,8 @@ GLuint vao, vbo, program;  // Global names
 GLuint shaderProgram, vertexShader, fragmentShader, pointCount;
 
 // Eye, lookat, and up defaults
-glm::vec3 eye(4.0f, 3.0f, -3.0f),
-lookat(0.0f, 0.0f, 0.0f),
+glm::vec3 eye(8.0f, 6.0f, 6.0f),
+lookat(2.0f, 0.0f, 2.0f),
 up(0.0f, 1.0f, 0.0f);
 // Perspective defaults
 float viewAngle(glm::radians(45.0f)),
@@ -105,6 +105,7 @@ glm::vec3 getSurfaceNormal(float x, float z);
 
 int main(int argc, char* argv[])
 {
+	glewExperimental = GL_TRUE;
 
 	// Set up the
 	Initialize(argc, argv);
@@ -121,7 +122,6 @@ void Initialize(int argc, char* argv[])
 {
 	// Initialize OpenGL
 	glutInit(&argc, argv);
-	glewExperimental = GL_TRUE;
 
 	// Set some context
 	glutInitContextVersion(4, 4);
@@ -185,6 +185,17 @@ void setupShaders(int argc, char** argv)
 	GLchar* fragmentSource = (GLchar*)readShaderFile(fragmentFileName);
 
 	fragmentShader = compileShader(GL_FRAGMENT_SHADER, fragmentSource);
+
+	//START DEBUG
+	GLint b;
+	GLint length = 200;
+	glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &length);
+	char* log = (char*)malloc(length);
+	glGetShaderInfoLog(fragmentShader, 200, &length, log);
+	printf("Log file: ");
+	if (length>1)
+		printf("%s\n", log);
+	//END DEBUG
 
 	shaderProgram = linkShader(vertexShader, fragmentShader);
 	glUseProgram(shaderProgram);
@@ -487,29 +498,29 @@ int makeSurface(VertexNormal* surfaceArray, int arrayCounter)
 	//Generate triangles
 	glm::vec3 triangle1;
 	glm::vec3 triangle2;
-	for (int row = 0.0f; row <= 4.0f / stepSize; row++)
+	for (int row = 0.0f; row < 4.0f / stepSize; row++)
 	{
-		for (int col = 0.0f; col <= 4.0f / stepSize; col++)
+		for (int col = 0.0f; col < 4.0f / stepSize; col++)
 		{
 #pragma region Add Points
 
 			surfaceArray[arrayCounter].point = stepSurface[row][col];
-			surfaceArray[arrayCounter++].normal = stepSurface[row][col];
+			surfaceArray[arrayCounter++].normal = stepNormals[row][col];
 
 			surfaceArray[arrayCounter].point = stepSurface[row + 1][col + 1];
-			surfaceArray[arrayCounter++].normal = stepSurface[row + 1][col + 1];
+			surfaceArray[arrayCounter++].normal = stepNormals[row + 1][col + 1];
 
 			surfaceArray[arrayCounter].point = stepSurface[row + 1][col];
-			surfaceArray[arrayCounter++].normal = stepSurface[row + 1][col];
+			surfaceArray[arrayCounter++].normal = stepNormals[row + 1][col];
 
 			surfaceArray[arrayCounter].point = stepSurface[row][col];
-			surfaceArray[arrayCounter++].normal = stepSurface[row][col];
+			surfaceArray[arrayCounter++].normal = stepNormals[row][col];
 
 			surfaceArray[arrayCounter].point = stepSurface[row][col + 1];
-			surfaceArray[arrayCounter++].normal = stepSurface[row][col + 1];
+			surfaceArray[arrayCounter++].normal = stepNormals[row][col + 1];
 
 			surfaceArray[arrayCounter].point = stepSurface[row + 1][col + 1];
-			surfaceArray[arrayCounter++].normal = stepSurface[row + 1][col + 1];
+			surfaceArray[arrayCounter++].normal = stepNormals[row + 1][col + 1];
 
 #pragma endregion
 		}
