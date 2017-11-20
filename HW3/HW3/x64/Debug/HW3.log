@@ -1,14 +1,2 @@
-﻿  HW3.cpp
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(190): warning C4101: 'b': unreferenced local variable
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(277): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(305): warning C4267: 'initializing': conversion from 'size_t' to 'GLint', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(488): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(490): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(491): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(493): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(494): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(501): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\lehie\source\repos\hw3\hw3\hw3\hw3.cpp(503): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  HW3.vcxproj -> C:\Users\lehie\source\repos\HW3\HW3\x64\Debug\HW3.exe
-  HW3.vcxproj -> C:\Users\lehie\source\repos\HW3\HW3\x64\Debug\HW3.pdb (Partial PDB)
+﻿  HW3.vcxproj -> Z:\repos\HW3\HW3\x64\Debug\HW3.exe
+  HW3.vcxproj -> Z:\repos\HW3\HW3\x64\Debug\HW3.pdb (Partial PDB)

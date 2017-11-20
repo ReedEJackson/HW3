@@ -8,7 +8,7 @@
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>-v vertexHw3.txt -f fragmentHw3.txt</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-v vertexHw3.txt -f fragmentHw3a.txt</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

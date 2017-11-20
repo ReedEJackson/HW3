@@ -25,6 +25,14 @@ struct LightStruct {
 	glm::vec3 intensity;
 };
 
+struct SpotlightStruct {
+    glm::vec3 position;
+    glm::vec3 intensity;
+    glm::vec3 direction;
+    float exponent;
+    float cutoffCosine;
+};
+
 struct MaterialStruct {
 	glm::vec3 ambient;
 	glm::vec3 diffuse;

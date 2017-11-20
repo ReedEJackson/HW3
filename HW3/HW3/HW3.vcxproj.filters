@@ -28,8 +28,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="fragmentHw3.txt" />
     <Text Include="vertexHw3.txt" />
+    <Text Include="fragmentHw3a.txt" />
+    <Text Include="fragmentHw3b.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

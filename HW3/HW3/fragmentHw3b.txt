@@ -4,9 +4,12 @@ in vec3 newNormal;
 
 layout(location=0) out vec4 fragColor;
 
-struct LightStruct {
-   vec3 position;
-   vec3 intensity;
+struct SpotlightStruct {
+    vec3 position;
+    vec3 intensity;
+    vec3 direction;
+    float exponent;
+    float cutoffCosine;
 };
 
 struct MaterialStruct {
@@ -16,17 +19,23 @@ struct MaterialStruct {
    float shininess;
 };
 
-uniform LightStruct light1;
+uniform SpotlightStruct light1;
 uniform MaterialStruct material1;
 
-vec3 computePhong(LightStruct light, MaterialStruct material)
+vec3 computePhong(SpotlightStruct light, MaterialStruct material)
 {
    vec3 toLight = normalize(light.position-newPosition);
    vec3 toView = normalize(-newPosition);
    vec3 reflection = reflect( -toLight, newNormal );
-   vec3 ambient = light.intensity*material.ambient;
+   vec3 ambient = material.ambient;
    float dotprod = max( dot(toLight,newNormal), 0.0 );
-   vec3 diffuse = dotprod*light.intensity*material.diffuse;
+
+   vec3 diffuse = vec3(0.0);
+   float cosine = dot(normalize(light.position-newPosition), light.direction);
+   if (cosine > light.cutoffCosine) {
+      diffuse = pow(cosine, light.exponent) * light.intensity * material.diffuse;
+   }
+
    vec3 spec = vec3(0.0);
    if ( dotprod > 0.0 ) {
      spec = light.intensity*material.specular
@@ -45,6 +54,6 @@ void main()
    if (gl_FrontFacing) {
       fragColor = min(vec4(f1, 1.0), vec4(1.0));
    } else {
-      fragColor = vec4( 0.8f, 0.0f, 0.8f, 0.0f );
+      fragColor = vec4( 0.2f, 0.9f, 0.1f, 0.0f );
    }
 };

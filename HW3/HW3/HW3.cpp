@@ -59,18 +59,21 @@ int myarrayCounter = 0;
 float stepSize = 1.0f; //Variable to control the grip step size
 
 MaterialStruct material1 = {
-	glm::vec3(0.17f, 0.1f, 0.1f),
-	glm::vec3(0.61f, 0.04f, 0.04f),
-	glm::vec3(0.73f, 0.63f, 0.63f),
-	77
+	glm::vec3(0.3f, 0.28f, 0.2f),
+	glm::vec3(1.0f, 0.922f, 0.804f),
+	glm::vec3(1.0f, 0.99f, 0.9f),
+	7
 };
 
-LightStruct light1 = {
-	glm::vec3(0.0f, 0.0f, 0.0f),
-	glm::vec3(1.0f, 1.0f, 1.0f)
+SpotlightStruct light1 = {
+    glm::vec3(0.0f, 1.0f, 0.0f),
+    glm::vec3(0.416f, 0.055f, 0.710f),
+    glm::normalize(glm::vec3(0.0f, 0.2f, 1.0f)),
+    100.0f,
+    0.99f
 };
 
-GLuint location[11];
+GLuint location[14];
 // Window title string
 const char* WINDOW_TITLE = "Homework 3";
 
@@ -249,21 +252,33 @@ void setupUniforms()
 	if (location[6] >= 0) {
 		glUniform3fv(location[6], 1, &light1.intensity[0]);
 	}
-	location[7] = glGetUniformLocation(program, "material1.ambient");
-	if (location[7] >= 0) {
-		glUniform3fv(location[7], 1, &material1.ambient[0]);
-	}
-	location[8] = glGetUniformLocation(program, "material1.diffuse");
-	if (location[8] >= 0) {
-		glUniform3fv(location[8], 1, &material1.diffuse[0]);
-	}
-	location[9] = glGetUniformLocation(program, "material1.specular");
-	if (location[9] >= 0) {
-		glUniform3fv(location[9], 1, &material1.specular[0]);
-	}
-	location[10] = glGetUniformLocation(program, "material1.shininess");
+    location[7] = glGetUniformLocation(program, "light1.direction");
+    if (location[7] >= 0) {
+        glUniform3fv(location[7], 1, &light1.direction[0]);
+    }
+    location[8] = glGetUniformLocation(program, "light1.exponent");
+    if (location[8] >= 0) {
+        glUniform1f(location[8], light1.exponent);
+    }
+    location[9] = glGetUniformLocation(program, "light1.cutoffCosine");
+    if (location[9] >= 0) {
+        glUniform1f(location[9], light1.cutoffCosine);
+    }
+	location[10] = glGetUniformLocation(program, "material1.ambient");
 	if (location[10] >= 0) {
-		glUniform1f(location[10], material1.shininess);
+		glUniform3fv(location[10], 1, &material1.ambient[0]);
+	}
+	location[11] = glGetUniformLocation(program, "material1.diffuse");
+	if (location[11] >= 0) {
+		glUniform3fv(location[11], 1, &material1.diffuse[0]);
+	}
+	location[12] = glGetUniformLocation(program, "material1.specular");
+	if (location[12] >= 0) {
+		glUniform3fv(location[12], 1, &material1.specular[0]);
+	}
+	location[13] = glGetUniformLocation(program, "material1.shininess");
+	if (location[13] >= 0) {
+		glUniform1f(location[13], material1.shininess);
 	}
 }
 
@@ -415,7 +430,16 @@ void KeyboardCallback(unsigned char key, int x, int y)
 		temp = glm::rotate(temp, glm::radians(-10.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 		modelMatrix = temp*modelMatrix;
 		break;
-		//Add keyboard grid control
+    case 'O':
+        // use larger grid
+        stepSize = stepSize < 2.0f ? stepSize * 2.0f : 2.0f;
+        pointCount = makeSurface(myarray, 0);
+        break;
+    case 'L':
+        // use smaller grid
+        stepSize = stepSize > 0.25f ? stepSize * 0.5f : 0.25f;
+        pointCount = makeSurface(myarray, 0);
+        break;
 	}
 
 	glutPostRedisplay();
@@ -467,10 +491,10 @@ void setupEnable() {
 void drawSurface() {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	glUniform3fv(location[7], 1, &material1.ambient[0]);
-	glUniform3fv(location[8], 1, &material1.diffuse[0]);
-	glUniform3fv(location[9], 1, &material1.specular[0]);
-	glUniform1f(location[10], material1.shininess);
+	glUniform3fv(location[10], 1, &material1.ambient[0]);
+	glUniform3fv(location[11], 1, &material1.diffuse[0]);
+	glUniform3fv(location[12], 1, &material1.specular[0]);
+	glUniform1f(location[13], material1.shininess);
 
 	glBufferData(GL_ARRAY_BUFFER, MAXPOINTS * sizeof(VertexNormal),
 		myarray, GL_STATIC_DRAW);
@@ -502,7 +526,7 @@ int makeSurface(VertexNormal* surfaceArray, int arrayCounter)
 	{
 		for (int col = 0.0f; col < 4.0f / stepSize; col++)
 		{
-#pragma region Add Points
+            #pragma region Add Points
 
 			surfaceArray[arrayCounter].point = stepSurface[row][col];
 			surfaceArray[arrayCounter++].normal = stepNormals[row][col];
@@ -522,7 +546,7 @@ int makeSurface(VertexNormal* surfaceArray, int arrayCounter)
 			surfaceArray[arrayCounter].point = stepSurface[row + 1][col + 1];
 			surfaceArray[arrayCounter++].normal = stepNormals[row + 1][col + 1];
 
-#pragma endregion
+            #pragma endregion
 		}
 	}
 
@@ -531,7 +555,7 @@ int makeSurface(VertexNormal* surfaceArray, int arrayCounter)
 
 glm::vec3 getSurfacePoint(float x, float z)
 {
-	float y = x * (z + 1.0f) * (x*x - (z + 1.0f) * (z + 1.0f)) / 50.0f;
+	float y = x * (z + 1.0f) * (x*x - (z + 1.0f) * (z + 1.0f)) / 50.0f; //equation given in assignment
 	return glm::vec3(x, y, z);
 }
 
@@ -544,5 +568,5 @@ glm::vec3 getSurfaceNormal(float x, float z)
 	partialWrtZ = x * (x*x - 3.0f * (z + 1.0f) * (z + 1.0f)) / 50.0f;
 
 	normal = glm::vec3(-partialWrtX, 1, -partialWrtZ);
-	return glm::normalize(normal);
+	return glm::normalize(normal); //ensure normal is unitized
 }
